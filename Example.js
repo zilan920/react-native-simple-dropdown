@@ -1,81 +1,40 @@
-import {
-    Text,
-    View,
-    ScrollView,
-    StyleSheet
-} from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 
-
-import {
-    Select,
-    Option,
-    OptionList,
-    updatePosition
-} from 'src/index';
 import React, {Component} from "react";
+import DropDown from './DropDown';
 
-export default class DropDown extends Component {
-    constructor(props) {
+export default class Example extends Component {
+    constructor(props){
         super(props);
-
-        this.state = {
-            canada: ''
-        };
+        this.state = {text: ''}
     }
 
-    componentDidMount() {
-        updatePosition(this.refs['SELECT1']);
-        updatePosition(this.refs['OPTIONLIST']);
-    }
-
-    _getOptionList() {
-        return this.refs['OPTIONLIST'];
-    }
-
-
-    _canada(province) {
-
-        this.setState({
-            ...this.state,
-            canada: province
-        });
-    }
 
     render() {
-        return (
-            <View>
-                <View style={style.container}>
-                    <Select
-                        ref="SELECT1"
-                        width={250}
-                        height={50}
-                        optionListRef={this._getOptionList.bind(this)}
-                        placeholder="Select a Province in USA ..."
-                        style={style.SelectStyle}
-                        styleOption={style.selectOptionStyle}
-                        styleText={style.styleText}
-                        onSelect={this._canada.bind(this)}
-                        data={['nishuia', 'Alberta', 'British Columbia', 'Who am ', 'What is this ']}
-                        dataExtractor={(text, i) => <Option
-                            key={'Option' + i}
-                            style={style.optionStyle}>{text}
-                        </Option>}/>
-                    <Text>Selected province of Canada: {this.state.canada}</Text>
-                </View>
-                <OptionList ref="OPTIONLIST"/>
-            </View>
-        );
+        return <View>
+            <DropDown
+                selectorRef={'EXAMPLE_DROPDOWN'}
+                optionListRef={'EXAMPLE_LIST'}
+                placeholder={'我是提示'}
+                data={['选择个屁', '哈哈哈哈']}
+                dataExtractor={(text, i) => <Option
+                    key={'Option' + i}
+                    style={style.optionStyle}>{text}
+                </Option>}
+                onSelect={(a) => {console.log(a); this.setState({text: a})}}
+                SelectStyle={style.selectStyle}
+                selectOptionStyle={style.selectOptionStyle}
+                textStyle={style.styleText}
+                dropDownStyle={style.optionStyle}
+                dropDownTextStyle={style.styleText}/>
+            <Text>{this.state.text}</Text>
+        </View>
     }
 }
 
+
 const style = StyleSheet.create({
-    container: {
-        width: 300,
-        height: 200,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    SelectStyle: {},
+    selectStyle: {},
     selectOptionStyle: {
         height: 50,
         backgroundColor: '#fff9e6',
@@ -84,15 +43,14 @@ const style = StyleSheet.create({
     styleText: {
         marginLeft: 10,
         color: '#1f1e25',
-        fontSize: 20
+        fontSize: 28
     },
     optionStyle: {
         marginLeft: 10,
         color: '#1f1e25',
-        fontSize: 15,
+        fontSize: 20,
         height: 48,
         borderBottomWidth: 0.5,
         borderBottomColor: '#f0f0f0'
     }
-
 });
