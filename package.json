@@ -1,0 +1,22 @@
+{
+  "name": "react-native-simple-dropdown",
+  "version": "0.0.1",
+  "description": "simple drop down",
+  "main": "Example.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zilan920/react-native-simple-dropdown.git"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": "zilan920",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zilan920/react-native-simple-dropdown/issues"
+  },
+  "homepage": "https://github.com/zilan920/react-native-simple-dropdown#readme"
+}
